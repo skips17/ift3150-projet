@@ -14,49 +14,70 @@ title: Vue d'ensemble du projet
 
 !!! info "Informations générales"
     **Session**: Été 2026  
-    **Auteur(s)**: <!-- Nom de chaque membre (matricule)  -->  
-    **Thème(s)**: <!-- Thèmes principaux abordés dans le projet  -->  
-    **Superviseur(s)**: <!-- Nom du superviseur (affiliation)  -->  
-    **Collaborateur(s):** <!-- Nom de(s) collaborateur(s) et partenaire(s)` -->  
+    **Auteur(s)**: Yassine Azmani (20267812)
+    **Thème(s)**: Développement web, architecture microservices, gestion de membres  
+    **Superviseur(s)**: Louis-Edouard Lafontant (DIRO, Université de Montréal)  
+    **Collaborateur(s):** FAAQ — Jasmin Robert (Directeur général), Normand Rivard (accès au code), Marc St-Pierre (suivi et tâches)
 
 ## Description du projet
 
-> :bulb: N'oubliez pas d'effacer ou mettre en commentaires les notes (`>`) en début de section
-
 ### Contexte
 
-> Présentez le contexte général dans lequel s’inscrit votre projet (social, organisationnel, technologique, éducatif, environnemental, etc.).
+La Fédération des astronomes amateurs du Québec (FAAQ) compte 28 clubs membres répartis dans 15 régions du Québec. Le nombre d'astronomes amateurs, membres des clubs ou membres individuels de la FAAQ, s'élève à environ 2000. 
+
+Depuis quelques années, la FAAQ est à la recherche d'une plateforme moderne pour combler ses besoins en ce qui concerne la gestion de membres. Elle souhaite remplacer les différentes plateformes de service utilisées actuellement qui ne sont pas harmonisées, et dont certaines sont inefficaces et n'offrent pas un service à la clientèle jugé adéquat.
 
 ### Problématique
 
-> Décrivez le problème central ou la question de recherche que votre projet cherche à adresser, pourquoi s'y intéresser et les faiblesses des solutions actuelles. 
-> Le problème doit pouvoir être compris indépendamment de la solution envisagée.
+La FAAQ utilise actuellement plusieurs outils pour gérer ses activités : WordPress pour le site web, ARMember pour l'accès à l'espace membre, MailChimp pour les communications, et PayPal ainsi que d'autres plateformes pour les paiements.
+
+Ces outils causent plusieurs problèmes :
+
+- Les plateformes ne sont pas synchronisées entre elles — la mise à jour de la base de données d'ARMember doit être faite manuellement
+- Le système d'adhésion seul coûte 77,25$/mois, auquel s'ajoutent des frais de modifications lors des mises à jour
+- Les mises à jour ne sont effectuées que lorsqu'elles sont critiques
+- Le service à la clientèle des fournisseurs actuels est problématique — plusieurs relances et suivis doivent être effectués lorsqu'il y a des problèmes
+- La base de données des membres n'est pas sous le contrôle de la FAAQ
 
 ### Proposition et objectifs
 
-> Présentez votre proposition de projet et les objectifs visés. Expliquez en quoi votre approche répond à la problématique identifiée. 
-> Assurez-vous d'avoir, dans la mesure du possible, des objectifs mesurables, raisonnnables dans le temps et non redondants entre eux.
+Le projet consiste à développer une plateforme web de gestion des membres qui regroupe tous les services actuellement dispersés. La plateforme doit être en français, sécuritaire, fiable, intuitive et accessible. Elle doit agir en tant que base de données primaire d'utilisateurs pour les autres plateformes utilisées, et respecter les lois en vigueur au Québec, dont la loi sur la protection des renseignements personnels dans le secteur privé.
+
+Chaque club, ainsi que la FAAQ, doit être autonome à son niveau, par la mise en place de trois paliers de gestion :
+
+- **Palier Membre** — permet à ce dernier de s'abonner, lui ou sa famille, aux clubs de son choix et de modifier ses informations personnelles au besoin
+- **Palier Club** — permet d'abonner n'importe quel membre déjà existant et sa famille, de créer de nouveaux membres, de modifier les tarifs d'abonnement, d'envoyer des rappels automatisés pour les membres dont l'abonnement vient à échéance, et de créer des rapports sur les membres
+- **Palier Fédération** — a le même rôle que le palier Club, en permettant en plus d'abonner des membres à n'importe quel club et de pouvoir créer de nouveaux clubs
 
 ### Méthodologie
 
-> Expliquez comment vous comptez aborder le projet : démarche générale, grandes étapes prévues, itérations, types de validations envisagées.
+Le projet suit une stratégie purement Agile. Les points importants de cette démarche sont la livraison régulière de fonctionnalités afin qu'elles soient testées rapidement, les tests constants par tous les intervenants, et la rétroaction rapide entre les développeurs et les représentants des usagers. Les tâches sont gérées dans ClickUp sous forme de stories avec critères d'acceptation.
 
 ### Validation et Évaluation
 
-> Indiquez comment vous évaluerez que votre solution répond aux objectifs du projet (ex. scénarios d’usage, tests, retours utilisateurs, indicateurs qualitatifs ou quantitatifs).
-
+La validation se fait à plusieurs niveaux:tests unitaires pour chaque composante du backend, tests d'intégration via MakeMake avec des scénarios Gherkin et Cucumber, et tests manuels via Bruno pour valider les APIs.
 
 ## Équipe
 
-> Présentez les membres de l’équipe et le rôle principal de chacun dans le projet.
+| Membre | Rôle |
+|--------|------|
+| Yassine Azmani (20267812) | APIs d'authentification et maquettes de l'interface web |
+| Gabriel Viana | API de création de club |
 
 ## Échéancier
 
 !!! info
     Le suivi complet est disponible dans la page [Suivi de projet](suivi.md).
 
-| Activités                      | Début   |   Fin   | Livrable                            | Statut      |
-|--------------------------------|---------|---------|-------------------------------------|-------------|
-| Ouverture de projet            | 4 mai   | 15 mai  | Proposition de projet               | ✅ Terminé  |
-| Études préliminaires           | 4 mai   | 22 mai  | Document d'analyse                  | 🔄 En cours |
-| Présentation + Rapport         | 7 aout  | 14 aout | Présentation + Rapport              | ⏳ À venir  |
+| Tâche | Assigné | Statut |
+|-------|---------|--------|
+| Créer serveur testadhesion.faaq.org | Normand Rivard | 🔄 En cours |
+| Cérès : installer le système de mise-à-jour de BD | — | ⏳ À faire |
+| Implémenter la stratégie de tests automatisés | — | ⏳ À faire |
+| Ajout d'usager dans un compte par le gestionnaire | — | ⏳ À faire |
+| Initialisation de l'authentification | Yassine Azmani | 🔄 En cours |
+| Compléter l'authentification | Yassine Azmani | 🔄 En cours |
+| API de création de club | Gabriel Viana | 🔄 En cours |
+| Création d'une notification | — | ⏳ À faire |
+| Consultation des notifications | — | ⏳ À faire |
+| Marquer une notification comme lue | — | ⏳ À faire |
