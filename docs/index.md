@@ -65,13 +65,13 @@ La validation se fait à plusieurs niveaux:tests unitaires pour chaque composant
 
 !!! info
     Le suivi complet est disponible dans la page [Suivi de projet](suivi.md).
-| Créer serveur testadhesion.faaq.org | Normand Rivard | 🔄 En cours |
-| Cérès : installer le système de mise-à-jour de BD | — | ⏳ À faire |
-| Implémenter la stratégie de tests automatisés | — | ⏳ À faire |
-| Ajout d'usager dans un compte par le gestionnaire | — | ⏳ À faire |
-| Initialisation de l'authentification | Yassine Azmani | 🔄 En cours |
-| Compléter l'authentification | Yassine Azmani | 🔄 En cours |
-| API de création de club | Gabriel Viana | 🔄 En cours |
-| Création d'une notification | — | ⏳ À faire |
-| Consultation des notifications | — | ⏳ À faire |
-| Marquer une notification comme lue | — | ⏳ À faire |
+| Créer serveur testadhesion.faaq.org | Normand Rivard | En cours |
+| Cérès : installer le système de mise-à-jour de BD | | À faire |
+| Implémenter la stratégie de tests automatisés |  | À faire |
+| Ajout d'usager dans un compte par le gestionnaire |  | À faire |
+| Initialisation de l'authentification | Yassine Azmani | En cours |
+| Compléter l'authentification | Yassine Azmani | En cours |
+| API de création de club | Gabriel Viana | En cours |
+| Création d'une notification |  | À faire |
+| Consultation des notifications | | À faire |
+| Marquer une notification comme lue | | À faire |
