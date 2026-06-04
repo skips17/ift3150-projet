@@ -14,7 +14,7 @@ title: Suivi du projet
 
 ---
 
-## Semaine 1 (18–24 mai 2026)
+## Semaine 1 
 
 ### Objectifs de la période
 - Participer à la réunion d'introduction avec l'équipe FAAQ
@@ -49,7 +49,7 @@ title: Suivi du projet
 
 ---
 
-## Semaine 2 (25–31 mai 2026)
+## Semaine 2
 
 ### Objectifs de la période
 - Obtenir l'accès au repo Git du projet
@@ -82,7 +82,7 @@ title: Suivi du projet
 
 ---
 
-## Semaine 3 (1–7 juin 2026)
+## Semaine 3 
 
 ### Objectifs de la période
 - Finaliser les maquettes Figma

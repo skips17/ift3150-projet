@@ -59,18 +59,12 @@ La validation se fait à plusieurs niveaux:tests unitaires pour chaque composant
 
 ## Équipe
 
-| Membre | Rôle |
-|--------|------|
 | Yassine Azmani (20267812) | APIs d'authentification et maquettes de l'interface web |
-| Gabriel Viana | API de création de club |
 
 ## Échéancier
 
 !!! info
     Le suivi complet est disponible dans la page [Suivi de projet](suivi.md).
-
-| Tâche | Assigné | Statut |
-|-------|---------|--------|
 | Créer serveur testadhesion.faaq.org | Normand Rivard | 🔄 En cours |
 | Cérès : installer le système de mise-à-jour de BD | — | ⏳ À faire |
 | Implémenter la stratégie de tests automatisés | — | ⏳ À faire |
