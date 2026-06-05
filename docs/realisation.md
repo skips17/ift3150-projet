@@ -23,7 +23,7 @@ La plateforme est développée selon une architecture microservices. Le système
 
 Hauméa: Point d'entrée principal — authentification, gestion des usagers, gestion des JWT, envoi des courriels
 Cérès :Gestion des clubs, membres et abonnements 
-Chiron :Données bancaires et paiements 
+Chiron :
 MakeMake: Tests d'intégration automatisés 
 
 Le frontend communique uniquement avec Hauméa. Hauméa redirige les requêtes vers Cérès ou Chiron selon le besoin.
