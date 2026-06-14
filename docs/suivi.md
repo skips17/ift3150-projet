@@ -112,3 +112,48 @@ title: Suivi du projet
 
 !!! warning "Difficultés"
     -  La propriété active sur l'entité User: la tâche demande d'ajouter active: boolean sur l'entité User, il faut s'assurer que Liquibase génère correctement la migration de base de données correspondante.
+
+---
+
+## Semaine 4
+
+### Objectifs de la période
+- Compléter l'implémentation de POST /auth/initiate
+- Implémenter POST /auth/complete
+- Tester les deux endpoints localement
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Ajout des champs active, locked et suspended sur l'entité User
+    - [x] Création de la migration Liquibase 002-user-status.yaml pour ajouter les colonnes sur la table user avec valeurs par défaut
+    - [x] Implémentation complète de POST /auth/initiate
+        - Vérification de l'existence de l'usager (404 si introuvable)
+        - Vérification du statut: actif, non verrouillé, non suspendu
+        - Génération d'un token intermédiaire JWT valide 300 secondes
+        - Retour du temporaryToken et de expiresInSeconds: 300
+    - [x] Création de l'entité UsedToken et du repository associé pour empêcher la réutilisation d'un token temporaire
+    - [x] Création de la migration Liquibase 003-used-tokens.yaml pour créer la table used_tokens avec les colonnes id, token et used_at
+    - [x] Implémentation complète de POST /auth/complete
+        - Validation du token temporaire (format et expiration)
+        - Vérification que le token n'a pas déjà été utilisé
+        - Vérification du mot de passe via BCrypt
+        - Invalidation du token après usage
+        - Récupération des privilèges de l'usager via requête JPQL
+        - Génération d'un access token JWT et d'un refresh token
+        - Retour de l'accessToken, du refreshToken et de expiresInSeconds: 86400
+    - [x] Configuration de l'environnement local avec l'ajout du module faaq-security-core et configuration de la base de données MariaDB
+    - [x] Tests manuels avec Postman, les deux endpoints retournent les réponses attendues (200 OK)
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - Utilisation d'une requête JPQL directe (getUserPrivileges) pour charger les privilèges car chaque appel à un repository ouvre sa propre session, ce qui évite les erreurs de session fermée liées à Spring WebFlux
+    - Ajout de @ToString.Exclude sur les collections de l'entité User pour éviter les erreurs lors du logging
+
+### Difficultés rencontrées
+
+!!! warning "Difficultés"
+    - Le module faaq-security-core n'était pas installé localement, résolu en clonant le repo et en exécutant mvn install
+    - Plusieurs erreurs de LazyInitializationException dues à l'architecture réactive de Spring WebFlux qui ferme la session Hibernate avant le chargement des associations lazy, résolu en remplaçant l'accès via les objets Java par une requête JPQL directe dans le repository
+    - La fonction UUID_TO_BIN n'est pas disponible dans la version de MariaDB utilisée, contourné avec UNHEX(REPLACE(UUID(), '-', ''))

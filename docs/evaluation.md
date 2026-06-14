@@ -13,50 +13,50 @@ title: Évaluation & Discussion
 
 # Évaluation
 
-> :bulb: Cette page sert à présenter comment le projet a été testé, évalué ou validé.  
-> Elle ne remplace pas le rapport final, mais permet de documenter progressivement les résultats obtenus et leur interprétation.
+## Méthodes de validation
 
-## Structure suggérée
+Les endpoints développés ont été validés manuellement via Postman en testant le flux complet d’authentification en deux étapes.
 
-> La structure suivante est donnée à titre indicatif.  
-> Vous pouvez l’adapter selon la nature du projet.
+**Scénario de test principal :**
 
-### Méthodes de validation
+1. Appel de POST /auth/initiate avec un nom d’usager valide, vérification que le temporaryToken est retourné avec expiresInSeconds: 300
+2. Appel de POST /auth/complete avec le token reçu et le mot de passe, vérification que l’accessToken, le refreshToken et expiresInSeconds: 86400 sont retournés
 
-> Présentez les approches utilisées pour valider le projet :
->
-> - scénarios d’utilisation ;
-> - tests fonctionnels ;
-> - tests utilisateurs ;
-> - mesures de performance ;
-> - validation expérimentale ;
-> - comparaison avec des solutions existantes.
+**Cas d’erreur testés :**
 
-### Résultats obtenus
+- Usager inexistant : 404 USER_NOT_FOUND
+- Token temporaire invalide ou expiré : 401 INVALID_TEMPORARY_TOKEN
+- Mot de passe incorrect : 401 INVALID_CREDENTIALS
+- Token déjà utilisé : 401 TEMPORARY_TOKEN_ALREADY_USED
 
-> Présentez les principaux résultats :
->
-> - fonctionnalités validées ;
-> - performances observées ;
-> - résultats de tests ;
-> - retours utilisateurs ;
-> - observations importantes.
+---
 
-### Analyse critique
+## Résultats obtenus
 
-> Discutez des résultats obtenus :
->
-> - les objectifs ont-ils été atteints ?
-> - quels éléments fonctionnent bien ?
-> - quelles limites ont été observées ?
-> - quels aspects pourraient être améliorés ?
+### Fonctionnalités validées
 
-### Limites du projet
+- POST /auth/initiate retourne 200 OK avec un token temporaire JWT valide 300 secondes
+- POST /auth/complete retourne 200 OK avec un access token JWT, un refresh token et une durée de validité de 86400 secondes
+- Le token temporaire est correctement invalidé après usage, une deuxième tentative avec le même token retourne TEMPORARY_TOKEN_ALREADY_USED
+- Les cas d’erreur retournent les codes HTTP et messages attendus selon les critères d’acceptation de la tâche ClickUp
 
-> Présentez les principales limites du projet :
->
-> - contraintes techniques ;
-> - portée limitée ;
-> - temps disponible ;
-> - limites des données ou des tests ;
-> - dépendances externes.
+### Observations
+
+- L’application démarre correctement et les migrations Liquibase s’exécutent sans erreur au démarrage
+
+---
+
+## Analyse critique
+
+Les deux tâches d’authentification ont été complétées et correspondent aux critères d’acceptation définis dans ClickUp. Le flux en deux étapes, token intermédiaire puis vérification du mot de passe, est fonctionnel et sécurisé car le token temporaire ne peut être utilisé qu’une seule fois.
+
+La principale limite observée est l’absence de tests unitaires automatisés. La validation a été faite uniquement de façon manuelle via Postman. Des tests automatisés avec JUnit ou Cucumber seraient nécessaires pour garantir la non-régression lors des prochaines modifications.
+
+Une autre limite est liée à l’architecture réactive de Spring WebFlux car les associations Hibernate lazy ne peuvent pas être chargées après la fermeture de la session, ce qui a nécessité d’utiliser une requête JPQL directe dans le repository pour charger les privilèges.
+
+---
+
+## Limites du projet
+
+- Pas de tests unitaires automatisés pour le moment, validation manuelle uniquement
+- Dépendance au module faaq-security-core qui doit être installé manuellement en local via mvn install

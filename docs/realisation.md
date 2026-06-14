@@ -14,7 +14,7 @@ title: Travail réalisé
 
 ---
 
-## Architecture ou structure générale
+## Architecture 
 
 ### Architecture logicielle
 
@@ -47,7 +47,7 @@ Le frontend communique uniquement avec Hauméa. Hauméa redirige les requêtes v
 
 ---
 
-## Fonctionnalités ou composantes réalisées
+## Fonctionnalités et composantes réalisées
 
 ### Maquettes de l'interface web
 
@@ -79,29 +79,55 @@ Le frontend communique uniquement avec Hauméa. Hauméa redirige les requêtes v
 - Configuration de la plateforme — personnalisation des messages, courriels, politiques et champs de données
 - Gestion des rôles et privilèges — arbre interactif des privilèges avec checkboxes pour créer des rôles
 
-### Tâches backend en cours
+## Décisions et ajustements
 
-**Initialisation de l'authentification — POST /api/auth/initiate**
+!!! info "Décisions et ajustements"
+    - Décision de concevoir les maquettes dans Figma basées sur le document d'appel d'offres
+    - Ajout d'une page de gestion des rôles avec arbre de privilèges interactif demandée par Marc lors d'une réunion
+### Tâches backend réalisées
 
-L'usager envoie son nom d'usager. Le système vérifie que l'usager existe, qu'il est actif et qu'il n'est pas verrouillé. Si valide, un token temporaire JWT est généré avec une expiration de 300 secondes et retourné à l'usager.
+**Initialisation de l'authentification — POST /auth/initiate** ✅
 
-**Complétion de l'authentification — POST /api/auth/complete**
+L'usager envoie son nom d'usager. Le système vérifie que l'usager existe, qu'il est actif et qu'il n'est pas verrouillé ou suspendu. Si valide, un token temporaire JWT est généré avec une expiration de 300 secondes et retourné à l'usager.
 
-L'usager envoie le token temporaire et son mot de passe. Le système vérifie la validité du token et du mot de passe. Si valide, un JWT d'authentification final est retourné avec un refresh token.
+Fichiers modifiés ou créés :
+
+- User.java : ajout des champs active, locked et suspended
+- 002-user-status.yaml : migration Liquibase pour les nouvelles colonnes
+- AuthController.java : implémentation de l'endpoint avec gestion des cas d'erreur
+
+Codes de retour : 200 OK avec temporaryToken et expiresInSeconds: 300, 404 si usager introuvable, 403 si inactif ou suspendu, 423 si verrouillé.
+
+**Complétion de l'authentification — POST /auth/complete** ✅
+
+L'usager envoie le token temporaire et son mot de passe. Le système vérifie la validité du token, qu'il n'a pas déjà été utilisé, et que le mot de passe correspond au hash BCrypt en base de données. Si valide, le token est invalidé, les privilèges sont chargés et un JWT d'accès ainsi qu'un refresh token sont retournés.
+
+Fichiers modifiés ou créés :
+
+- UsedToken.java : entité pour tracer les tokens déjà utilisés
+- UsedTokenRepository.java : repository avec méthode existsByToken
+- 003-used-tokens.yaml : migration Liquibase pour la table used_tokens
+- AuthController.java : implémentation de l'endpoint avec invalidation du token et génération des tokens de session
+- UserRepository.java : correction du type du paramètre uuid et utilisation de la requête JPQL getUserPrivileges pour charger les privilèges via une session indépendante
+- User.java : ajout de @ToString.Exclude sur les collections pour éviter les erreurs de logging
+
+Codes de retour : 200 OK avec accessToken, refreshToken et expiresInSeconds: 86400, 401 si token invalide, déjà utilisé ou mot de passe incorrect.
 
 ---
+
 
 ## Difficultés rencontrées
 
 !!! warning "Difficultés"
-    - Clé SSH non reconnue par GitHub lors du test initial — résolu en ajoutant la clé directement sur GitHub
-    - Compréhension de la structure du code existant dans le repo Hauméa — nécessite de lire le code avant de commencer à développer
+    - Le module faaq-security-core n'était pas installé localement, résolu en clonant le repo et en exécutant mvn install
+    - Plusieurs erreurs de LazyInitializationException dues à Spring WebFlux qui ferme la session Hibernate avant le chargement des données, résolu en remplaçant l'accès via les objets Java par une requête JPQL directe dans le repository
+    - Le hash BCrypt du mot de passe admin en base de données ne correspondait à aucun mot de passe connu, résolu en mettant à jour le hash directement via DataGrip
+    - La fonction UUID_TO_BIN n'est pas disponible dans la version de MariaDB utilisée, contourné avec UNHEX(REPLACE(UUID(), '-', ''))
 
 ---
 
 ## Décisions et ajustements
 
 !!! info "Décisions et ajustements"
-    - Décision de concevoir les maquettes dans Figma basées sur le document d'appel d'offres
-    - Ajout d'une page de gestion des rôles avec arbre de privilèges interactif — demandée par Marc lors d'une réunion
-    - Choix de prioriser les tâches d'authentification 
+    - Utilisation d'une requête JPQL directe pour charger les privilèges de l'usager plutôt que de naviguer les associations entre objets Java, car chaque appel au repository ouvre sa propre session et évite les problèmes liés à Spring WebFlux
+    - Ajout de @ToString.Exclude sur les collections de l'entité User pour éviter que Lombok essaie d'afficher les rôles dans les logs et déclenche une erreur de session fermée
