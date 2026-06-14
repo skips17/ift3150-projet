@@ -12,7 +12,9 @@ title: Évaluation & Discussion
 
 
 # Évaluation
-
+## Maquettes
+Les 14 maquettes conçues dans Figma respectent les fonctionnalités attendues selon le document d'appel d'offres. La charte graphique de la FAAQ a été reçue et les maquettes seront mises à jour pour être en accord avec le design général de la plateforme.
+## Developement de l'authentification au backend
 ## Méthodes de validation
 
 Les endpoints développés ont été validés manuellement via Postman en testant le flux complet d’authentification en deux étapes.
