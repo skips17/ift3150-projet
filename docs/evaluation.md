@@ -33,6 +33,10 @@ Les endpoints développés ont été validés manuellement via Postman en testan
 
 ## Résultats obtenus
 
+### Maquettes
+
+Les 14 maquettes conçues dans Figma respectent les fonctionnalités attendues selon le document d'appel d'offres. La charte graphique de la FAAQ a été reçue et les maquettes seront mises à jour pour être en accord avec le design général de la plateforme.
+
 ### Fonctionnalités validées
 
 - POST /auth/initiate retourne 200 OK avec un token temporaire JWT valide 300 secondes

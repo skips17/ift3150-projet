@@ -157,3 +157,37 @@ title: Suivi du projet
     - Le module faaq-security-core n'était pas installé localement, résolu en clonant le repo et en exécutant mvn install
     - Plusieurs erreurs de LazyInitializationException dues à l'architecture réactive de Spring WebFlux qui ferme la session Hibernate avant le chargement des associations lazy, résolu en remplaçant l'accès via les objets Java par une requête JPQL directe dans le repository
     - La fonction UUID_TO_BIN n'est pas disponible dans la version de MariaDB utilisée, contourné avec UNHEX(REPLACE(UUID(), '-', ''))
+
+---
+
+## Semaine 5
+
+### Objectifs de la période
+- Mettre à jour les maquettes avec la charte graphique officielle de la FAAQ
+- Se documenter sur l'intégration des paiements avec Moneris
+- Produire un diagramme du modèle de données du microservice Hauméa
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Réception de la charte graphique officielle de la FAAQ envoyée par Jasmin Robert
+    - [x] Mise à jour des maquettes HTML avec les couleurs, polices et logo officiels de la FAAQ
+        - Couleur principale bleu foncé et couleur d'accent mauve
+        - Police Poppins pour le texte et Rubik Mono One pour le logo
+        - Intégration du logo officiel FAAQ dans l'en tête de chaque page
+        - Boutons arrondis, type pill shape, cohérents avec le style de la charte
+    - [x] Pages mises à jour: inscription, connexion, mot de passe oublié, tableau de bord membre, paiement, carte de membre, tableau de bord club, tableau de bord fédération
+    - [x] Ajout d'une option de connexion via Google et Facebook sur la page de connexion, à valider avec Marc si ça fait partie de la portée du projet
+    - [x] Documentation sur l'intégration des paiements avec Moneris, utilisation d'un iframe fourni par Moneris pour la saisie de la carte de crédit et génération d'un jeton transmis à Chiron
+    - [x] Génération d'un diagramme UML du modèle de données du microservice Hauméa avec l'outil Diagrams d'IntelliJ
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - L'option de connexion via Google et Facebook nécessiterait l'implémentation d'OAuth côté Hauméa, à valider avec Marc avant de l'ajouter à la portée du projet
+    - Utilisation de l'outil Diagrams d'IntelliJ pour générer automatiquement le diagramme du modèle de données plutôt que de le dessiner manuellement
+
+### Difficultés rencontrées
+
+!!! warning "Difficultés"
+    - Configuration des catégories d'affichage dans IntelliJ pour que le diagramme montre les champs des classes plutôt qu'une vue simplifiée par paquetage
