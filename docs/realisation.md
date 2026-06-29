@@ -79,6 +79,10 @@ Le frontend communique uniquement avec Hauméa. Hauméa redirige les requêtes v
 - Configuration de la plateforme — personnalisation des messages, courriels, politiques et champs de données
 - Gestion des rôles et privilèges — arbre interactif des privilèges avec checkboxes pour créer des rôles
 
+### Mise à jour des maquettes avec la charte graphique de la FAAQ
+
+Les 14 maquettes ont été révisées pour adopter la charte graphique officielle de la FAAQ (couleurs, polices, logo, style des boutons).
+
 ## Décisions et ajustements
 
 !!! info "Décisions et ajustements"
@@ -113,7 +117,10 @@ Fichiers modifiés ou créés :
 
 Codes de retour : 200 OK avec accessToken, refreshToken et expiresInSeconds: 86400, 401 si token invalide, déjà utilisé ou mot de passe incorrect.
 
----
+**Profil de dashboard configurable** ✅
+
+Mise en place d'un profil permettant à chaque usager de personnaliser l'affichage de son tableau de bord (ordre des cartes, taille d'affichage). Le profil est sauvegardé côté serveur et un profil par défaut est utilisé tant que l'usager n'a rien personnalisé.
+
 
 
 ## Difficultés rencontrées

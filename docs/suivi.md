@@ -191,3 +191,27 @@ title: Suivi du projet
 
 !!! warning "Difficultés"
     - Configuration des catégories d'affichage dans IntelliJ pour que le diagramme montre les champs des classes plutôt qu'une vue simplifiée par paquetage
+
+---
+
+## Semaine 6
+
+### Objectifs de la période
+- Terminer la mise à jour des maquettes pour toutes les pages
+- Participer à la réunion d'équipe hebdomadaire
+- Entamer la conception du dashboard configurable par l'usager
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Finalisation de la mise à jour des maquettes pour toutes les pages
+    - [x] Réunion d'équipe
+        - Présentation par Marc du concept de dashboard configurable par l'usager: cartes réordonnables selon les rôles et priorités, taille d'affichage (petit/moyen/grand), sauvegardé côté serveur
+        - Annonce de Marc: création de trois nouveaux dépôts Git: MakeMake, Chiron, et un dépôt commun pour les requêtes Bruno
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - Intégration Moneris en attente: accès au compte de test, aux dépôts et aux informations nécessaires doivent être fournis par Marc avant de pouvoir commencer
+
+
