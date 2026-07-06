@@ -83,6 +83,10 @@ Le frontend communique uniquement avec Hauméa. Hauméa redirige les requêtes v
 
 Les 14 maquettes ont été révisées pour adopter la charte graphique officielle de la FAAQ (couleurs, polices, logo, style des boutons).
 
+### Pages frontend réalisées
+
+Début de l'implémentation du frontend en React avec TypeScript et Vite, en cohérence avec la charte graphique FAAQ.
+
 ## Décisions et ajustements
 
 !!! info "Décisions et ajustements"

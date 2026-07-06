@@ -214,4 +214,26 @@ title: Suivi du projet
 !!! info "Décisions"
     - Intégration Moneris en attente: accès au compte de test, aux dépôts et aux informations nécessaires doivent être fournis par Marc avant de pouvoir commencer
 
+---
+
+## Semaine 7
+
+### Objectifs de la période
+- Présenter l'avancement du projet
+- Commencer l'implémentation du frontend
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Réunion et discussion avec Jasmin Robert sur l'avancement du projet
+    - [x] Présentation de l'avancement du projet à Louis
+    - [x] Début de l'implémentation du frontend
+        - Création de la page de connexion (composant React avec gestion des deux étapes d'authentification)
+        - Création de la page du tableau de bord membre
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - Démarrage du frontend en React avec TypeScript et Vite, en cohérence avec la charte graphique FAAQ déjà établie
+
 
