@@ -236,4 +236,26 @@ title: Suivi du projet
 !!! info "Décisions"
     - Démarrage du frontend en React avec TypeScript et Vite, en cohérence avec la charte graphique FAAQ déjà établie
 
+## Semaine 8
+
+### Objectifs de la période
+- Commencer les tâches backend dans Cérès
+- Commencer l'intégration frontend React dans WordPress
+- Ajuster les maquettes suite aux commentaires de Jasmin
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Initialisation du projet frontend React avec TypeScript et Vite, création du composant de connexion branché sur les deux étapes d'authentification Hauméa
+    - [x] Réunion avec Marc
+        - Discussion sur l'architecture frontend : WordPress utilisé comme vitrine publique, application React chargée dans un iframe pour l'espace membre
+        - Attribution des tâches backend dans Cérès (compléter les entités existantes et ajouter les nouvelles énumérations)
+        - Discussion sur l'utilisation de HSQL comme base de données en mémoire pour les tests unitaires
+    - [x] Recherche et documentation de la méthode d'intégration d'une application React dans WordPress via iframe
+    - [x] Ajustements des maquettes suite aux commentaires de Jasmin : indication du délai d'expiration dans le tableau de bord club, clarification du club concerné dans la page de gestion des tarifs, ajout du type d'abonnement dans la page de paiement, ajout de l'option de don à 25$ avec la note sur le Programme Placements Sports et Loisirs, et ajout des logos des cartes de crédit et du virement Interac
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - Ne pas commencer le développement frontend complet avant confirmation de Marc et Jasmin sur l'intégration WordPress/React
 
