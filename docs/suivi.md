@@ -259,3 +259,38 @@ title: Suivi du projet
 !!! info "Décisions"
     - Ne pas commencer le développement frontend complet avant confirmation de Marc et Jasmin sur l'intégration WordPress/React
 
+---
+
+## Semaine 9
+
+### Objectifs de la période
+- Compléter les tâches backend assignées dans Cérès
+- Mettre en place la structure du projet frontend React
+
+### Travail réalisé
+
+!!! abstract "Avancement"
+    - [x] Réunion avec Marc
+        - Discussion sur le projet MakeMake et l'intégration des tests avec Cucumber et Gherkin : Marc a expliqué que les tests d'intégration seront écrits en dehors des microservices individuels et qu'il expliquera comment contribuer à ce projet
+        - Marc a confirmé que la priorité côté frontend est de d'abord établir une structure de projet claire et des conventions avant de développer les pages
+    - [x] Complétion des tâches backend dans Cérès
+        - Tâche 2.1 : ajout du champ `renewalReminderDaysBefore` dans l'entité `MembershipPlan`
+        - Tâche 2.2 : complétion de l'énumération `AudienceType` avec les valeurs MEMBER, NON_MEMBER, YOUTH, ADULT, FAMILY, SENIOR
+        - Tâche 3.1 : création de l'entité `MembershipPlanAudience` avec UUID, clé étrangère vers `MembershipPlan`, type d'audience, prix, et contrainte d'unicité sur la combinaison plan/type
+        - Tâche 3.2 : création du repository `MembershipPlanAudienceRepository` avec les méthodes `findByMembershipPlanId` et `findByMembershipPlanIdAndAudienceType`
+        - Tâche 6.1 : création de l'entité `AuditLog` et du repository `AuditLogRepository`
+        - Tâche 6.2 : création du service `AuditService` pour journaliser les actions (log, getLogsForEntity, getLogsByUser)
+        - Tâche 6.3 : création du listener JPA `AuditEntityListener` avec `@PostPersist` et `@PostUpdate` pour journaliser automatiquement les créations et modifications d'entités
+        - Correction d'un bug préexistant dans `FederationMapper` : méthodes de mapping manquantes pour `PhoneNumber` et type incorrect dans `PhoneNumberDto`
+    - [x] Mise en place de la structure du projet frontend React
+        - Organisation des dossiers : `components/`, `pages/`, `services/`, `hooks/`, `types/`
+        - Création du service d'authentification `authService.ts` pour centraliser les appels à Hauméa et la gestion des tokens
+        - Mise en place du routage avec `react-router-dom`, séparation des routes publiques et des routes protégées
+        - Création d'un composant `ProtectedRoute` pour rediriger vers la page de connexion si l'utilisateur n'est pas authentifié
+        - Avancement sur la page tableau de bord membre, affichage des informations de l'abonnement en cours
+
+### Décisions et ajustements
+
+!!! info "Décisions"
+    - Convenu avec Marc d'établir des conventions de nommage et une structure de dossiers claire dès le départ pour faciliter les contributions futures
+    - Les tests d'intégration MakeMake seront abordés dans une prochaine réunion avec Marc
